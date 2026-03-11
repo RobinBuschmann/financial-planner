@@ -1,5 +1,5 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { apiClient, type Budget } from "../../core/http/apiClient.ts";
+import { apiClient, type Budget } from "@/core/http/apiClient.ts";
 import { useUserId } from "../users/UserIdProvider.tsx";
 
 export const budgetsQueryOptions = (userId: string) =>

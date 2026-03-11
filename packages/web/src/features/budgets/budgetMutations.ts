@@ -3,7 +3,7 @@ import {
   apiClient,
   type Budget,
   type CreateBudgetInput,
-} from "../../core/http/apiClient.ts";
+} from "@/core/http/apiClient.ts";
 import { budgetsQueryOptions } from "./budgetQueries.ts";
 import { useUserId } from "../users/UserIdProvider.tsx";
 

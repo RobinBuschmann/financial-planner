@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { transactionsQueryOptions } from "./transactionQueries.ts";
-import { apiClient, type Transaction } from "../../core/http/apiClient.ts";
+import { apiClient, type Transaction } from "@/core/http/apiClient.ts";
 import { useUserId } from "../users/UserIdProvider.tsx";
 
 export const useAddTransaction = () => {

@@ -1,5 +1,5 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { apiClient } from "../../core/http/apiClient.ts";
+import { apiClient } from "@/core/http/apiClient.ts";
 import { useUserId } from "../users/UserIdProvider.tsx";
 
 export const categoriesQueryOptions = (userId: string) =>

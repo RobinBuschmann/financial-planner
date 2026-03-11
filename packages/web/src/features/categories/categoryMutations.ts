@@ -1,8 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  apiClient,
-  type CreateCategoryInput,
-} from "../../core/http/apiClient.ts";
+import { apiClient, type CreateCategoryInput } from "@/core/http/apiClient.ts";
 import { categoriesQueryOptions } from "./categoryQueries.ts";
 import { useUserId } from "../users/UserIdProvider.tsx";
 

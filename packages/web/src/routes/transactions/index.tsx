@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
-import { AllTransactionsPage } from "../../features/transactions/AllTransactionsPage.tsx";
-import { transactionsQueryOptions } from "../../features/transactions/transactionQueries.ts";
-import { categoriesQueryOptions } from "../../features/categories/categoryQueries.ts";
-import { RoutePendingComponent } from "../../common/components/RoutePendingComponent.tsx";
-import { RouteErrorComponent } from "../../common/components/RouteErrorComponent.tsx";
+import { AllTransactionsPage } from "@/features/transactions/AllTransactionsPage.tsx";
+import { transactionsQueryOptions } from "@/features/transactions/transactionQueries.ts";
+import { categoriesQueryOptions } from "@/features/categories/categoryQueries.ts";
+import { RoutePendingComponent } from "@/components/RoutePendingComponent.tsx";
+import { RouteErrorComponent } from "@/components/RouteErrorComponent.tsx";
 
 const searchSchema = z.object({
   categoryId: z.string().optional(),
