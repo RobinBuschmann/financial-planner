@@ -18,13 +18,15 @@ npm run test:e2e     # Run Playwright end-to-end tests (starts servers automatic
 ```bash
 npm run db:generate  # Generate a new Drizzle migration from schema changes
 npm run db:migrate   # Apply pending migrations (also runs automatically on dev/start)
-npm run generate:spec # Generate openapi.json from the running API
+npm run generate:spec # Regenerate openapi.json from the running API
 ```
 
 ### Web-specific (run from `packages/web/`)
 ```bash
-npm run generate:api-client  # Generate schema.d.ts from packages/api/openapi.json
+npm run generate:api-client  # Regenerate schema.d.ts from packages/api/openapi.json
 ```
+
+`openapi.json` is committed to the repository. When the API schema changes: run `generate:spec` in `packages/api/`, then run `generate:api-client` in `packages/web/`, then commit both files.
 
 ## Architecture
 
@@ -54,8 +56,8 @@ Each domain follows the same 6-file pattern (use `categories/` as the reference)
 
 | File | Responsibility |
 |---|---|
-| `*-entity.ts` | Zod schemas and TypeScript types |
-| `*-schema.ts` | Drizzle table definition |
+| `*-dtos.ts` | Zod schemas and TypeScript types |
+| `*-database-schema.ts` | Drizzle table definition |
 | `*-repository-factory.ts` | Raw DB queries |
 | `*-service-factory.ts` | Business logic |
 | `*-routes-factory.ts` | Fastify route handlers |
@@ -82,6 +84,15 @@ All providers are composed in `src/app.ts` via `createContainer()`.
 3. Run `npm run db:generate` to create the migration, then `npm run db:migrate`
 4. Run `npm run generate:spec` to update `openapi.json`
 
+### Testing
+
+Each domain has three test files mirroring its implementation:
+- `*-repository.test.ts` — integration tests against an in-memory SQLite database
+- `*-service.test.ts` — unit tests with mocked repository
+- `*-routes.test.ts` — unit tests with mocked service, using Fastify's `inject()`
+
+Use `inmemoryDatabaseFactory()` from `src/core/testing/inmemory-database-factory.ts` in repository tests. It runs the real migrations against an in-memory database. Use `createMock<T>()` from `src/common/testing/create-mock.ts` to create typed mocks for service and route tests.
+
 ---
 
 ## Web (`packages/web/`)
@@ -93,11 +104,11 @@ All providers are composed in `src/app.ts` via `createContainer()`.
 - **TanStack Query v5** — data fetching and caching
 - **TanStack Form v1** — form state management
 - **openapi-fetch** — type-safe HTTP client generated from the API's OpenAPI spec
-- **Tailwind CSS v4** + **Flowbite** — styling
+- **Tailwind CSS v4** + **shadcn/ui** — styling
 
 ### HTTP client (`src/core/http/`)
 
-`schema.d.ts` is generated from `packages/api/openapi.json` via `openapi-typescript`. The typed `apiClient` singleton and domain type aliases live in `client.ts`:
+`schema.d.ts` is generated from `packages/api/openapi.json` via `openapi-typescript`. The typed `apiClient` singleton and domain type aliases live in `apiClient.ts`:
 
 ```ts
 export type Transaction = OkBody<paths["/transactions/"]["get"]>[number];
@@ -120,7 +131,7 @@ Each feature has:
 TanStack Form via a custom hook factory:
 - `formContext.ts` — creates `fieldContext` and `formContext`
 - `useForm.tsx` — exports `useAppForm`; register new field types here in `fieldComponents`
-- `TextField.tsx`, `SelectField.tsx` — read from `fieldContext`, render input + inline validation errors
+- `TextField.tsx`, `Select.tsx` — read from `fieldContext`, render input + inline validation errors
 
 To add a new field type: create a component using `useFieldContext()` and register it in `useForm.tsx`.
 
