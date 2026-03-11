@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "lerna run dev --parallel",
+    "dev": "lerna run dev",
     "build": "lerna run build",
     "preview": "npm run preview -w @financial-planner/web",
     "test": "lerna run test",
