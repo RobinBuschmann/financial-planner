@@ -1,7 +1,7 @@
 import type {
   CreateTransactionInput,
   Transaction,
-} from "./transaction-entity.ts";
+} from "./transaction-dtos.ts";
 import { TransactionRepository } from "./transaction-repository-factory.ts";
 
 type TransactionServiceOptions = {
@@ -14,7 +14,10 @@ export const transactionServiceFactory = ({
   async getAll(userId: string): Promise<Transaction[]> {
     return transactionRepository.findAll(userId);
   },
-  async create(input: CreateTransactionInput, userId: string): Promise<Transaction> {
+  async create(
+    input: CreateTransactionInput,
+    userId: string,
+  ): Promise<Transaction> {
     return transactionRepository.create(input, userId);
   },
   async delete(id: string, userId: string): Promise<void> {

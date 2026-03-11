@@ -2,10 +2,7 @@ import { z } from "zod";
 import { Route } from "../core/routes/route.ts";
 import type { CategoryService } from "./category-service-factory.ts";
 import type { VerifyUserId } from "../core/auth/verify-user-id.ts";
-import {
-  categorySchema,
-  createCategoryInputSchema,
-} from "./category-entity.ts";
+import { categorySchema, createCategoryInputSchema } from "./category-dtos.ts";
 import { CategoryAlreadyExistsError } from "./category-already-exists-error.ts";
 
 export type CategoryRoutesOptions = {
@@ -64,7 +61,10 @@ export const categoryRoutesFactory = ({
       "/:id",
       {
         onRequest: [verifyUserId],
-        schema: { params: z.object({ id: z.string() }), response: { 204: z.undefined() } },
+        schema: {
+          params: z.object({ id: z.string() }),
+          response: { 204: z.undefined() },
+        },
       },
       async (request, reply) => {
         await categoryService.delete(request.params.id, request.userId);

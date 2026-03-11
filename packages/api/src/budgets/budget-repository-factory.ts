@@ -1,8 +1,8 @@
 import { randomUUID } from "crypto";
 import { and, eq } from "drizzle-orm";
 import type { Database } from "../core/database/database-factory.ts";
-import type { Budget, CreateBudgetInput } from "./budget-entity.ts";
-import { budgets } from "./budgets-schema.ts";
+import type { Budget, CreateBudgetInput } from "./budget-dtos.ts";
+import { budgets } from "./budget-database-schema.ts";
 
 type BudgetRepositoryOptions = {
   database: Database;
@@ -11,8 +11,8 @@ export type BudgetRepository = ReturnType<typeof budgetRepositoryFactory>;
 export const budgetRepositoryFactory = ({
   database,
 }: BudgetRepositoryOptions) => ({
-  findAll: async (userId: string): Promise<Budget[]> => {
-    return database
+  findAll: async (userId: string): Promise<Budget[]> =>
+    database
       .select({
         id: budgets.id,
         categoryId: budgets.categoryId,
@@ -20,12 +20,14 @@ export const budgetRepositoryFactory = ({
       })
       .from(budgets)
       .where(eq(budgets.userId, userId))
-      .all();
-  },
+      .all(),
 
   create: async (input: CreateBudgetInput, userId: string): Promise<Budget> => {
     const id = randomUUID();
-    database.insert(budgets).values({ id, ...input, userId }).run();
+    database
+      .insert(budgets)
+      .values({ id, ...input, userId })
+      .run();
     return { id, ...input };
   },
 

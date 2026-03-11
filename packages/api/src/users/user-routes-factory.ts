@@ -1,9 +1,11 @@
 import { Route } from "../core/routes/route.ts";
 import type { UserService } from "./user-service-factory.ts";
-import { userSchema } from "./user-entity.ts";
+import { userSchema } from "./user-dtos.ts";
 
 export type UserRoutesOptions = { userService: UserService };
-export const userRoutesFactory = ({ userService }: UserRoutesOptions): Route => ({
+export const userRoutesFactory = ({
+  userService,
+}: UserRoutesOptions): Route => ({
   path: "/users",
   async apply(fastify) {
     fastify.post(

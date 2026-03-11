@@ -1,4 +1,4 @@
-import { apiClient } from "../../core/http/apiClient.ts";
+import { apiClient } from "@/core/http/apiClient.ts";
 
 const USER_ID_KEY = "fp_user_id";
 

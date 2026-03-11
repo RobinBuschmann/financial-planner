@@ -5,7 +5,7 @@ import type { VerifyUserId } from "../core/auth/verify-user-id.ts";
 import {
   transactionSchema,
   createTransactionInputSchema,
-} from "./transaction-entity.ts";
+} from "./transaction-dtos.ts";
 
 export type TransactionRoutesOptions = {
   transactionService: TransactionService;

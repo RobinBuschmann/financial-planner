@@ -4,7 +4,7 @@ import { registerSchema } from "../core/database/register-schema.ts";
 import { userRoutesFactory } from "./user-routes-factory.ts";
 import { userRepositoryFactory } from "./user-repository-factory.ts";
 import { userServiceFactory } from "./user-service-factory.ts";
-import { userSchemaRefFactory } from "./users-schema.ts";
+import { userSchemaRefFactory } from "./user-database-schema.ts";
 import { databaseFactory } from "../core/database/database-factory.js";
 
 export const userProviders = createProviders({

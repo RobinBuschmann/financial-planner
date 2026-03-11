@@ -1,4 +1,4 @@
-import type { Budget, CreateBudgetInput } from "./budget-entity.ts";
+import type { Budget, CreateBudgetInput } from "./budget-dtos.ts";
 import type { BudgetRepository } from "./budget-repository-factory.ts";
 
 type BudgetServiceOptions = {

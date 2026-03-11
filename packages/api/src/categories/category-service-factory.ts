@@ -1,4 +1,4 @@
-import type { Category, CreateCategoryInput } from "./category-entity.ts";
+import type { Category, CreateCategoryInput } from "./category-dtos.ts";
 import type { CategoryRepository } from "./category-repository-factory.ts";
 import { CategoryAlreadyExistsError } from "./category-already-exists-error.ts";
 

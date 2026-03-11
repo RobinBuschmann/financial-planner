@@ -4,7 +4,7 @@ import { createProviders } from "../common/inject/container.ts";
 import { registerRoutes } from "../core/routes/register-routes.ts";
 import { registerSchema } from "../core/database/register-schema.ts";
 import { verifyUserIdFactory } from "../core/auth/verify-user-id.ts";
-import { categorySchemaRefFactory } from "./categories-schema.ts";
+import { categorySchemaRefFactory } from "./category-database-schema.ts";
 import { categoryRoutesFactory } from "./category-routes-factory.ts";
 import { databaseFactory } from "../core/database/database-factory.js";
 

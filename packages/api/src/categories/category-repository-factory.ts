@@ -1,8 +1,8 @@
 import { randomUUID } from "crypto";
 import { and, eq } from "drizzle-orm";
 import type { Database } from "../core/database/database-factory.ts";
-import type { Category, CreateCategoryInput } from "./category-entity.ts";
-import { categories } from "./categories-schema.ts";
+import type { Category, CreateCategoryInput } from "./category-dtos.ts";
+import { categories } from "./category-database-schema.ts";
 
 type CategoryRepositoryOptions = {
   database: Database;
@@ -19,9 +19,15 @@ export const categoryRepositoryFactory = ({
       .all();
   },
 
-  create: async (input: CreateCategoryInput, userId: string): Promise<Category> => {
+  create: async (
+    input: CreateCategoryInput,
+    userId: string,
+  ): Promise<Category> => {
     const id = randomUUID();
-    database.insert(categories).values({ id, ...input, userId }).run();
+    database
+      .insert(categories)
+      .values({ id, ...input, userId })
+      .run();
     return { id, ...input };
   },
 

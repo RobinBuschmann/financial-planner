@@ -2,7 +2,7 @@ import { z } from "zod";
 import { Route } from "../core/routes/route.ts";
 import type { BudgetService } from "./budget-service-factory.ts";
 import type { VerifyUserId } from "../core/auth/verify-user-id.ts";
-import { budgetSchema, createBudgetInputSchema } from "./budget-entity.ts";
+import { budgetSchema, createBudgetInputSchema } from "./budget-dtos.ts";
 
 export type BudgetRoutesOptions = {
   budgetService: BudgetService;
@@ -49,7 +49,10 @@ export const budgetRoutesFactory = ({
       "/:id",
       {
         onRequest: [verifyUserId],
-        schema: { params: z.object({ id: z.string() }), response: { 204: z.undefined() } },
+        schema: {
+          params: z.object({ id: z.string() }),
+          response: { 204: z.undefined() },
+        },
       },
       async (request, reply) => {
         await budgetService.delete(request.params.id, request.userId);

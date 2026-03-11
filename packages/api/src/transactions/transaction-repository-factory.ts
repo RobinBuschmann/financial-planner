@@ -1,8 +1,11 @@
 import { randomUUID } from "crypto";
 import { and, eq } from "drizzle-orm";
 import type { Database } from "../core/database/database-factory.ts";
-import type { CreateTransactionInput, Transaction } from "./transaction-entity.ts";
-import { transactions } from "./transactions-schema.ts";
+import type {
+  CreateTransactionInput,
+  Transaction,
+} from "./transaction-dtos.ts";
+import { transactions } from "./transaction-database-schema.ts";
 
 type TransactionRepositoryOptions = {
   database: Database;
@@ -27,7 +30,10 @@ export const transactionRepositoryFactory = ({
       .all();
   },
 
-  create: async (input: CreateTransactionInput, userId: string): Promise<Transaction> => {
+  create: async (
+    input: CreateTransactionInput,
+    userId: string,
+  ): Promise<Transaction> => {
     const id = randomUUID();
     database
       .insert(transactions)

@@ -3,7 +3,7 @@ import { transactionRepositoryFactory } from "./transaction-repository-factory.t
 import { databaseFactory } from "../core/database/database-factory.ts";
 import { createProviders } from "../common/inject/container.ts";
 import { verifyUserIdFactory } from "../core/auth/verify-user-id.ts";
-import { transactionSchemaRefFactory } from "./transactions-schema.ts";
+import { transactionSchemaRefFactory } from "./transaction-database-schema.ts";
 import { transactionRoutesFactory } from "./transaction-routes-factory.ts";
 import { registerRoutes } from "../core/routes/register-routes.ts";
 import { registerSchema } from "../core/database/register-schema.ts";
