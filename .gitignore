@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# SQLite database
+*.db
+*.db-shm
+*.db-wal
+
+# Generated files
+packages/api/openapi.json
+packages/web/src/core/http/schema.d.ts
+packages/web/src/routeTree.gen.ts
+
+# Playwright
+packages/e2e/playwright-report/
+packages/e2e/test-results/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Locals
+*.local.json
+
+# IDE
+.idea/

@@ -1,0 +1,30 @@
+{
+  "name": "financial-planner",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "lerna run dev",
+    "build": "lerna run build",
+    "preview": "npm run preview -w @financial-planner/web",
+    "test": "lerna run test",
+    "test:types": "lerna run test:types",
+    "test:e2e": "lerna run test:e2e",
+    "lint": "lerna run lint"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "dotenv": "^16.0.0",
+    "dotenv-expand": "^12.0.0",
+    "lerna": "^8.0.0",
+    "prettier": "^3.8.1",
+    "shadcn": "^4.0.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.0",
+    "vitest": "^4.0.18"
+  }
+}

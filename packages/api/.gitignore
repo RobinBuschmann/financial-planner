@@ -1,0 +1,5 @@
+financial-planner.db
+financial-planner.db-shm
+financial-planner.db-wal
+dist/
+drizzle/
