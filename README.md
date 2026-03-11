@@ -68,13 +68,15 @@ The E2E tests start the API and web server automatically if they are not already
 
 This is a demo application. The following areas would need attention before a real deployment:
 
-- **Infrastructure** — there is no infrastructure-as-code definition for the application. A production deployment would benefit from an `infrastructure/` package (e.g. Terraform or Pulumi) defining compute, storage, CDN, DNS, and environment-specific configuration — closing the gap left by the missing `.env.production`.
+- **Infrastructure** — there is no infrastructure-as-code definition for the application. A production deployment would benefit from an `infrastructure/` package (e.g. Terraform or AWS CDK) defining compute, storage, CDN, DNS, and environment-specific configuration — closing the gap left by the missing `.env.production`.
 - **Configuration** — only a `.env.development` file is provided. There is no `.env.production` or environment-specific configuration for staging or production deployments. Some values (ports, CORS origin) fall back to hardcoded defaults in code.
 - **Authentication** — user identity is a UUID stored in localStorage with no server-side session or token. There is no login, logout, or account recovery.
 - **Input validation** — the API validates request bodies via Zod but does not sanitise inputs or enforce all business rules (e.g. negative budget limits are accepted).
 - **Error handling** — API errors surface as generic messages in the UI. There is no retry logic, no offline support, and no structured error responses beyond HTTP status codes.
+- **HTTP error handling** — unhandled errors (database failures, third-party SDK errors) are returned to the client as-is, potentially leaking internal details. A proper error handler should distinguish between intentional error responses and unexpected errors, returning a generic 500 for the latter.
 - **Database** — SQLite is embedded in the API process with no connection pooling, no automated migration step for production deployments, and no backup strategy.
 - **Dependency injection** — the DI container used in the API is a proof of concept borrowed from a separate side project of mine. It would not be a custom implementation for a project of this scale; a simpler approach or an established library would be more appropriate.
+- **UX flows** — some entity management is only accessible via indirect paths. For example, categories can only be created under the Budgets section, making it unintuitive to add a new category while creating a transaction. Common entities should be manageable from any context that requires them.
 - **Testing coverage** — unit tests cover pure functions; there are no integration tests for the API layer, and E2E coverage is partial.
 - **Accessibility** — interactive components (selects, tabs, buttons) use Radix UI primitives which handle keyboard navigation and ARIA out of the box. Colour contrast ratios, landmark regions, and page title updates on navigation have not been audited against WCAG guidelines.
 - **Performance** — all transactions are fetched in a single request with no pagination or virtualisation.
