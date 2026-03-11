@@ -1,4 +1,4 @@
-import { useRouterState, Link } from "@tanstack/react-router";
+import { useRouterState, Link, LinkProps } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Tabs, TabsList, TabsTrigger, tabsListVariants } from "./tabs.tsx";
 import type { VariantProps } from "class-variance-authority";
@@ -22,7 +22,7 @@ export function LinkTabs({
 }
 
 type LinkTabProps = {
-  to: string;
+  to: LinkProps["to"];
   children: ReactNode;
 };
 
@@ -31,7 +31,7 @@ export function LinkTab({ to, children }: LinkTabProps) {
     <TabsTrigger
       value={to}
       nativeButton={false}
-      render={(props) => <Link to={to as never} {...props} />}
+      render={(props) => <Link to={to} {...props} />}
     >
       {children}
     </TabsTrigger>
