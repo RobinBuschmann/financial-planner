@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1772718506307,
+      "tag": "0000_bizarre_chat",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1772913363099,
+      "tag": "0001_demonic_gauntlet",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1773064888229,
+      "tag": "0002_tan_leech",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1773146151619,
+      "tag": "0003_damp_masque",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1773151435438,
+      "tag": "0004_damp_pixie",
+      "breakpoints": true
+    }
+  ]
+}
