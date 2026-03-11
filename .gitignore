@@ -10,7 +10,6 @@ dist/
 *.db-wal
 
 # Generated files
-packages/api/openapi.json
 packages/web/src/core/http/schema.d.ts
 packages/web/src/routeTree.gen.ts
 
