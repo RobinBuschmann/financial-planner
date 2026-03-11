@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "tsx scripts/migrate.ts",
+    "predev": "tsx scripts/migrate.ts && npm run generate:spec",
     "dev": "tsx watch src/index.ts",
     "prestart": "tsx scripts/migrate.ts",
     "start": "tsx src/index.ts",
@@ -13,6 +13,7 @@
     "db:push": "drizzle-kit push",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/migrate.ts",
+    "build": "npm run generate:spec",
     "generate:spec": "tsx scripts/generate-openapi-spec.ts"
   },
   "dependencies": {

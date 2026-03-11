@@ -16,6 +16,7 @@
     "test:types": "tsc"
   },
   "dependencies": {
+    "@financial-planner/api": "*",
     "@base-ui/react": "^1.2.0",
     "@fontsource-variable/geist": "^5.2.8",
     "@tailwindcss/vite": "^4.2.0",
